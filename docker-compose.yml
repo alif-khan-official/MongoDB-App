@@ -1,0 +1,19 @@
+version: '3'
+services:
+  application:
+    image: mongo-app
+    environment: 
+      - MONGODB_CONNSTRING=mongodb://mongoadmin:secret@localhost
+    ports:
+      - 8080:8080
+    links:
+      - mongodb
+    depends_on:
+      - mongodb  
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret  
+    ports:
+      - 27017:27017        
